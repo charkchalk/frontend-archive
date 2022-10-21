@@ -7,11 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*.{ts,html}": "eslint --cache --fix",
-    "src/**/*.**": "prettier --check --ignore-unknown"
+    "src/**/*.**": "prettier --check --ignore-unknown --write"
   },
   "private": true,
   "dependencies": {
