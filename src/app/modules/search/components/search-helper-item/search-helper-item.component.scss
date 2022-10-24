@@ -1,0 +1,10 @@
+:host::ng-deep mat-form-field .mat-form-field-wrapper,
+:host::ng-deep mat-form-field .mat-form-field-flex {
+  height: 100%;
+}
+
+:host::ng-deep mat-form-field .mat-form-field-infix {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

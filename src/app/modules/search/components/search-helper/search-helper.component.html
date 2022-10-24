@@ -1,0 +1,16 @@
+<app-search-helper-item
+  *ngFor="let filter of this.filters; let index = index"
+  [filter]="filter"
+  (removed)="removeFilter(index)"
+></app-search-helper-item>
+
+<div class="mt-5 text-center">
+  <button
+    mat-stroked-button
+    matTooltip="新增過濾條件"
+    aria-label="新增過濾條件的按鈕"
+    (click)="addFilter()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
