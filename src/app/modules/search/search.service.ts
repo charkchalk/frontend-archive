@@ -5,9 +5,9 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class SearchService {
-  public filtrables: Record<string, AnyFiltrable> = {
-    teacher: {
-      key: "teacher",
+  public filtrables: { [key in FiltrableKey]?: Filtrable<key> } = {
+    [FiltrableKey.teacher]: {
+      key: FiltrableKey.teacher,
       displayValue: "授課教師",
       compareMethods: [
         {
@@ -65,8 +65,8 @@ export class SearchService {
         ],
       },
     },
-    time: {
-      key: "time",
+    [FiltrableKey.time]: {
+      key: FiltrableKey.time,
       displayValue: "上課時間",
       compareMethods: [
         {
@@ -181,8 +181,8 @@ export class SearchService {
         ],
       },
     },
-    keyword: {
-      key: "keyword",
+    [FiltrableKey.keyword]: {
+      key: FiltrableKey.keyword,
       displayValue: "關鍵字",
       compareMethods: [
         {
@@ -198,8 +198,8 @@ export class SearchService {
         inputType: InputType.Text,
       },
     },
-    type: {
-      key: "type",
+    [FiltrableKey.type]: {
+      key: FiltrableKey.type,
       displayValue: "修別",
       compareMethods: [
         {
@@ -240,66 +240,90 @@ export class SearchService {
   }
 }
 
+// P1: Filtrable of the filter
+
+export enum FiltrableKey {
+  teacher = "teacher",
+  keyword = "keyword",
+  time = "time",
+  type = "type",
+}
+
+// P1: Filtrable items
+
+export interface Filtrable<K extends FiltrableKey = FiltrableKey> {
+  key: K;
+  displayValue: string;
+  compareMethods: CompareMethod[];
+  compareContent: AnyComparable;
+}
+
+export type AnyFiltrable<K extends FiltrableKey = FiltrableKey> =
+  | TextFiltrable<K>
+  | MultipleSelectFiltrable<K>;
+
+export interface TextFiltrable<K extends FiltrableKey = FiltrableKey>
+  extends Filtrable<K> {
+  compareContent: TextComparable;
+}
+
+export interface MultipleSelectFiltrable<K extends FiltrableKey = FiltrableKey>
+  extends Filtrable<K> {
+  compareContent: MultipleSelectComparable;
+}
+
+// P2: Compare methods to compare item with content
+
 export interface CompareMethod {
   key: string;
   displayValue: string;
 }
 
-export interface Filtrable<T extends InputType> {
-  key: string;
-  displayValue: string;
-  compareMethods: CompareMethod[];
-  compareContent: Comparable<T>;
-}
-
-export type AnyFiltrable = TextFiltrable | MultipleSelectFiltrable;
-
-export interface TextFiltrable extends Filtrable<InputType.Text> {
-  compareContent: ComparableText;
-}
-
-export interface MultipleSelectFiltrable
-  extends Filtrable<InputType.MultipleSelect> {
-  compareContent: ComparableMultipleSelect;
-}
+// P3: Type of input for comparable
 
 export enum InputType {
   Text = "text",
   MultipleSelect = "multiple-select",
 }
 
+// P3: Comparable, should be Compare Content
+
 export interface Comparable<T extends InputType> {
   inputType: T;
 }
 
-export type AnyComparable = ComparableText | ComparableMultipleSelect;
+export type AnyComparable = TextComparable | MultipleSelectComparable;
 
-export interface ComparableText extends Comparable<InputType.Text> {}
+export interface TextComparable extends Comparable<InputType.Text> {}
 
-export interface ComparableMultipleSelect
+export interface MultipleSelectComparable
   extends Comparable<InputType.MultipleSelect> {
   selectables: Selectable[];
 }
+
+// P3-2: Selectable: Multiple Select
 
 export interface Selectable {
   key: string;
   displayValue: string;
 }
 
-export interface Filter<T extends InputType> {
-  filtering: Filtrable<T> | null;
+// Filter: a user inputted content
+
+export interface Filter {
+  filtering: AnyFiltrable | null;
   compareMethod: CompareMethod | null;
   compareContent: unknown;
 }
 
 export type AnyFilter = TextFilter | MultipleSelectFilter;
 
-export interface TextFilter extends Filter<InputType.Text> {
+export interface TextFilter extends Filter {
   filtering: TextFiltrable | null;
   compareContent: string | null;
 }
 
-export interface MultipleSelectFilter extends Filter<InputType.MultipleSelect> {
+export interface MultipleSelectFilter extends Filter {
   filtering: MultipleSelectFiltrable | null;
   compareContent: Selectable[] | null;
 }

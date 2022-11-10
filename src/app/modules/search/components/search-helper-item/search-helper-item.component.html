@@ -6,7 +6,7 @@
         *ngFor="let option of filtrableOptions | async | keyvalue"
         [value]="option.value"
       >
-        {{ option.value.displayValue }}
+        {{ option.value?.displayValue }}
       </mat-option>
     </mat-select>
   </mat-form-field>

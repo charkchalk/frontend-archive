@@ -1,9 +1,11 @@
 import {
   AnyFilter,
   AnyFiltrable,
-  ComparableMultipleSelect,
   CompareMethod,
+  Filtrable,
+  FiltrableKey,
   InputType,
+  MultipleSelectComparable,
   MultipleSelectFilter,
   SearchService,
   Selectable,
@@ -39,9 +41,9 @@ export class SearchHelperItemComponent implements OnInit {
 
   // Part 1: Filtrable selection
 
-  protected filtrableOptions = new BehaviorSubject<
-    Record<string, AnyFiltrable>
-  >({});
+  protected filtrableOptions = new BehaviorSubject<{
+    [key in FiltrableKey]?: Filtrable<key>;
+  }>({});
   protected filteringFormControl: FormControl<AnyFiltrable | null> =
     new FormControl();
 
@@ -234,7 +236,7 @@ export class SearchHelperItemComponent implements OnInit {
     const filterValue = value.toString().toLowerCase();
 
     const compareContent = this.filter.filtering
-      ?.compareContent as ComparableMultipleSelect;
+      ?.compareContent as MultipleSelectComparable;
     const selected = this.compareContentSelected.value;
 
     return compareContent.selectables.filter(option => {
