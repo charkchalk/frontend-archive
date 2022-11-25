@@ -1,0 +1,17 @@
+<mat-form-field class="w-full">
+  <mat-label>比對內容</mat-label>
+  <mat-chip-list #chipList class="w-full">
+    <mat-chip>
+      {{ "chip" }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input [matAutocomplete]="auto" [matChipInputFor]="chipList" />
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+    <mat-option>
+      {{ "option" }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

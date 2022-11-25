@@ -1,68 +1,26 @@
 <div class="flex flex-col lg:flex-row lg:space-x-2">
   <mat-form-field>
     <mat-label>過濾項</mat-label>
-    <mat-select [formControl]="filteringFormControl">
-      <mat-option
-        *ngFor="let option of filtrableOptions | async | keyvalue"
-        [value]="option.value"
-      >
-        {{ option.value.displayValue }}
+    <mat-select>
+      <mat-option>
+        {{ "option" }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field class="lg:w-20">
     <mat-label>比對方式</mat-label>
-    <mat-select
-      [formControl]="compareMethodFormControl"
-      [attr.data-test]="compareMethodFormControl.value?.displayValue"
-    >
-      <mat-option
-        *ngFor="let option of compareMethodOptions | async"
-        [value]="option"
-      >
-        {{ option.displayValue }}
+    <mat-select>
+      <mat-option>
+        {{ "option" }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="grow" *ngIf="(isTextInput | async) === true">
-    <mat-label>比對內容</mat-label>
-    <input matInput [formControl]="compareContentTextFormControl" />
-  </mat-form-field>
-
-  <mat-form-field class="grow" *ngIf="(isTextInput | async) === false">
-    <mat-label>比對內容</mat-label>
-    <mat-chip-list #chipList class="w-full" [disabled]="!filter.filtering">
-      <mat-chip
-        *ngFor="let option of compareContentSelected | async; let index = index"
-        (removed)="onRemoveSelect(index)"
-      >
-        {{ option.displayValue }}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip>
-      <input
-        [formControl]="compareContentSelectFormControl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [value]="compareContentSelectFormControl.value"
-      />
-    </mat-chip-list>
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      autoActiveFirstOption
-      (optionSelected)="onSelectOption($event)"
-    >
-      <mat-option
-        *ngFor="let option of compareContentAvailableOptions | async"
-        [value]="option"
-      >
-        {{ option.displayValue }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+  <div class="grow">
+    <app-text-content-input></app-text-content-input>
+    <app-select-content-input></app-select-content-input>
+  </div>
 
   <button
     mat-icon-button
