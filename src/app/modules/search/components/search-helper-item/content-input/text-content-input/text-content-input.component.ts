@@ -1,7 +1,8 @@
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { Component, Input } from "@angular/core";
 import { MatChipEditedEvent, MatChipInputEvent } from "@angular/material/chips";
 
-import { Component } from "@angular/core";
+import TextFilter from "../../../../filters/common/text-filter";
 
 @Component({
   selector: "app-text-content-input",
@@ -9,15 +10,24 @@ import { Component } from "@angular/core";
   styleUrls: ["./text-content-input.component.scss"],
 })
 export class TextContentInputComponent {
+  @Input() public filter: TextFilter | null = null;
+
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  public error: string | null = null;
   public items: string[] = [];
 
   public add(event: MatChipInputEvent): void {
     const value = (event.value || "").trim();
 
-    if (value) {
-      this.items.push(value);
+    if (!value) return;
+
+    let error = this.filter?.validate(value) || null;
+    if (error) {
+      this.error = error.source;
+      return;
     }
+
+    this.items.push(value);
 
     event.chipInput!.clear();
   }
