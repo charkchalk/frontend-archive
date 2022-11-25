@@ -357,8 +357,14 @@ export default class TeacherProviderService {
   ];
 
   public getSuggestions(value: string): Teacher[] {
+    const inputValue = value.trim().toLowerCase();
+
+    if (inputValue === "") {
+      return this._sample;
+    }
+
     return this._sample.filter(teacher => {
-      return teacher.name.toLowerCase().includes(value.toLowerCase());
+      return teacher.name.toLowerCase().includes(inputValue);
     });
   }
 }

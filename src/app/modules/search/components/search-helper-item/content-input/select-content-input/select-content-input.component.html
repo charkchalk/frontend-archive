@@ -3,10 +3,10 @@
 
   <mat-chip-grid #chipGrid aria-label="Content Selection">
     <mat-chip-row
-      *ngFor="let selected of selectableOptions; let index = index"
+      *ngFor="let selected of selectedOptions; let index = index"
       (removed)="removeSelectedOption(index)"
     >
-      {{ selected }}
+      {{ selected.value }}
       <button matChipRemove [attr.aria-label]="'remove ' + selected">
         <mat-icon>cancel</mat-icon>
       </button>
@@ -20,6 +20,7 @@
     [formControl]="inputControl"
     [matAutocomplete]="auto"
     [matChipInputFor]="chipGrid"
+    [value]="inputControl.value"
   />
 
   <mat-autocomplete
@@ -28,7 +29,7 @@
     (optionSelected)="selectOption($event)"
   >
     <mat-option *ngFor="let option of selectableOptions" [value]="option">
-      {{ option }}
+      {{ option.value }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
