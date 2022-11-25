@@ -1,17 +1,34 @@
 <mat-form-field class="w-full">
   <mat-label>比對內容</mat-label>
-  <mat-chip-list #chipList class="w-full">
-    <mat-chip>
-      {{ "chip" }}
-      <button matChipRemove>
+
+  <mat-chip-grid #chipGrid aria-label="Content Selection">
+    <mat-chip-row
+      *ngFor="let selected of selectableOptions; let index = index"
+      (removed)="removeSelectedOption(index)"
+    >
+      {{ selected }}
+      <button matChipRemove [attr.aria-label]="'remove ' + selected">
         <mat-icon>cancel</mat-icon>
       </button>
-    </mat-chip>
-    <input [matAutocomplete]="auto" [matChipInputFor]="chipList" />
-  </mat-chip-list>
-  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
-    <mat-option>
-      {{ "option" }}
+    </mat-chip-row>
+  </mat-chip-grid>
+
+  <input
+    #input
+    type="text"
+    placeholder="選擇內容"
+    [formControl]="inputControl"
+    [matAutocomplete]="auto"
+    [matChipInputFor]="chipGrid"
+  />
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    autoActiveFirstOption
+    (optionSelected)="selectOption($event)"
+  >
+    <mat-option *ngFor="let option of selectableOptions" [value]="option">
+      {{ option }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
