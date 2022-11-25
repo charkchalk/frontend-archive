@@ -1,4 +1,25 @@
 <mat-form-field class="w-full">
   <mat-label>比對內容</mat-label>
-  <input matInput />
+  <mat-chip-grid #chipGrid aria-label="Enter Content">
+    <mat-chip-row
+      *ngFor="let item of items; let index = index"
+      (removed)="remove(index)"
+      [editable]="true"
+      (edited)="edit(index, $event)"
+    >
+      {{ item }}
+      <button matChipRemove [attr.aria-label]="'remove ' + item">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+
+    <input
+      type="text"
+      placeholder="輸入內容"
+      matChipInputAddOnBlur
+      [matChipInputFor]="chipGrid"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"
+    />
+  </mat-chip-grid>
 </mat-form-field>
