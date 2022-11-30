@@ -13,7 +13,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 import { BehaviorSubject } from "rxjs";
 import { FormControl } from "@angular/forms";
-import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent } from "@angular/material/legacy-autocomplete";
 
 @Component({
   selector: "app-search-helper-item",

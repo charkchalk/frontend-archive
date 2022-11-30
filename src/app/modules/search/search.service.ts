@@ -274,7 +274,7 @@ export interface Comparable<T extends InputType> {
 
 export type AnyComparable = ComparableText | ComparableMultipleSelect;
 
-export interface ComparableText extends Comparable<InputType.Text> {}
+export type ComparableText = Comparable<InputType.Text>;
 
 export interface ComparableMultipleSelect
   extends Comparable<InputType.MultipleSelect> {
