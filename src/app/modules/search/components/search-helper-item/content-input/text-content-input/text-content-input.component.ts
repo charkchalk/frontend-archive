@@ -21,7 +21,7 @@ export class TextContentInputComponent {
 
     if (!value) return;
 
-    let error = this.filter?.validate(value) || null;
+    const error = this.filter?.validate(value);
     if (error) {
       this.error = error.source;
       return;
@@ -29,7 +29,7 @@ export class TextContentInputComponent {
 
     this.items.push(value);
 
-    event.chipInput!.clear();
+    event.chipInput?.clear();
   }
 
   public remove(index: number): void {
