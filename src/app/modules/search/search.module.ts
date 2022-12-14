@@ -11,11 +11,21 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
 
 import { SearchHelperComponent } from "./components/search-helper/search-helper.component";
+import { SelectContentInputComponent } from "./components/search-helper-item/content-input/select-content-input/select-content-input.component";
+import { TextContentInputComponent } from "./components/search-helper-item/content-input/text-content-input/text-content-input.component";
 import { SearchHelperItemComponent } from "./components/search-helper-item/search-helper-item.component";
 import { SearchRoutingModule } from "./search-routing.module";
 
 @NgModule({
-  declarations: [SearchHelperComponent, SearchHelperItemComponent],
+  declarations: [
+    SearchIndexComponent,
+    SearchComponent,
+    SearchTextComponent,
+    SearchHelperComponent,
+    SearchHelperItemComponent,
+    TextContentInputComponent,
+    SelectContentInputComponent,
+  ],
   imports: [
     CommonModule,
     SearchRoutingModule,

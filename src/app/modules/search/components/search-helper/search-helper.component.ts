@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 
-import { AnyFilter, SearchService } from "../../search.service";
+import Filter from "../../filters/common/filter";
+import { SearchService } from "../../search.service";
 
 @Component({
   selector: "app-search-helper",
@@ -8,7 +9,7 @@ import { AnyFilter, SearchService } from "../../search.service";
   styleUrls: ["./search-helper.component.scss"],
 })
 export class SearchHelperComponent implements OnInit, OnDestroy {
-  protected filters: AnyFilter[] = [];
+  protected filters: Array<Filter | null> = [];
   public constructor(protected searchService: SearchService) {}
 
   public ngOnInit(): void {
@@ -16,12 +17,15 @@ export class SearchHelperComponent implements OnInit, OnDestroy {
     if (!this.filters.length) this.addFilter();
   }
 
+  public replaceFilter(index: number, filterKey: string): void {
+    const filter = this.searchService.getFilter(filterKey);
+    if (!filter) return;
+
+    this.filters.splice(index, 1, new filter());
+  }
+
   protected addFilter(): void {
-    this.filters.push({
-      filtering: null,
-      compareMethod: null,
-      compareContent: null,
-    });
+    this.filters.push(null);
   }
 
   protected removeFilter(index: number): void {
@@ -29,6 +33,8 @@ export class SearchHelperComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.searchService.filters = this.filters;
+    this.searchService.filters = this.filters.filter(
+      filter => !!filter,
+    ) as Filter[];
   }
 }

@@ -2,6 +2,7 @@
   *ngFor="let filter of this.filters; let index = index"
   [filter]="filter"
   (removed)="removeFilter(index)"
+  (changed)="replaceFilter(index, $event)"
 ></app-search-helper-item>
 
 <div class="mt-5 text-center">

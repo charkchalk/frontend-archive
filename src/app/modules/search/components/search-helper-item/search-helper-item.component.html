@@ -1,9 +1,12 @@
 <div class="flex flex-col lg:flex-row lg:space-x-2">
   <mat-form-field>
     <mat-label>過濾項</mat-label>
-    <mat-select>
-      <mat-option>
-        {{ "option" }}
+    <mat-select (valueChange)="changed.emit($event)" [value]="filter?.getKey()">
+      <mat-option
+        *ngFor="let availableFilter of availableFilters"
+        [value]="availableFilter.key"
+      >
+        {{ availableFilter.label }}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -11,15 +14,24 @@
   <mat-form-field class="lg:w-20">
     <mat-label>比對方式</mat-label>
     <mat-select>
-      <mat-option>
-        {{ "option" }}
+      <mat-option
+        *ngFor="let compareOptions of filter?.selectableCompareOptions"
+        [value]="compareOptions.key"
+      >
+        {{ compareOptions.label }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <div class="grow">
-    <app-text-content-input></app-text-content-input>
-    <app-select-content-input></app-select-content-input>
+    <app-text-content-input
+      *ngIf="filter?.type === 'text'"
+      [filter]="filter"
+    ></app-text-content-input>
+    <app-select-content-input
+      *ngIf="filter?.type === 'select'"
+      [filter]="filter"
+    ></app-select-content-input>
   </div>
 
   <button

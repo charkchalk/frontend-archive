@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 
 import Displayable from "../../../../filters/common/displayable";
+import Filter from "../../../../filters/common/filter";
 import { FormControl } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import SelectFilter from "../../../../filters/common/select-filter";
@@ -11,7 +12,10 @@ import SelectFilter from "../../../../filters/common/select-filter";
   styleUrls: ["./select-content-input.component.scss"],
 })
 export class SelectContentInputComponent implements OnInit {
-  @Input() public filter: SelectFilter | null = null;
+  @Input() public filter: SelectFilter | Filter | null = null;
+  public get selectFilter(): SelectFilter | null {
+    return this.filter as SelectFilter | null;
+  }
 
   public selectedOptions: Displayable[] = [];
   public selectableOptions: Displayable[] = [];
@@ -30,10 +34,14 @@ export class SelectContentInputComponent implements OnInit {
   }
 
   protected filterOptions(value: string): void {
-    if (!this.filter) return;
-    this.selectableOptions = this.filter.getSuggestions(value).filter(value => {
-      return !this.selectedOptions.some(selected => selected.key === value.key);
-    });
+    if (!this.selectFilter) return;
+    this.selectableOptions = this.selectFilter
+      .getSuggestions(value)
+      .filter(value => {
+        return !this.selectedOptions.some(
+          selected => selected.key === value.key,
+        );
+      });
   }
 
   public selectOption(event: MatAutocompleteSelectedEvent): void {
