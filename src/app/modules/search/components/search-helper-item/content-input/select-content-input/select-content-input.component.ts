@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 
 import Displayable from "../../../../filters/common/displayable";
 import Filter from "../../../../filters/common/filter";
@@ -11,7 +11,7 @@ import SelectFilter from "../../../../filters/common/select-filter";
   templateUrl: "./select-content-input.component.html",
   styleUrls: ["./select-content-input.component.scss"],
 })
-export class SelectContentInputComponent implements OnInit {
+export class SelectContentInputComponent implements OnInit, OnDestroy {
   @Input() public filter: SelectFilter | Filter | null = null;
   public get selectFilter(): SelectFilter | null {
     return this.filter as SelectFilter | null;
@@ -30,7 +30,13 @@ export class SelectContentInputComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.selectedOptions = this.selectFilter?.value || [];
     this.filterOptions("");
+  }
+
+  public ngOnDestroy(): void {
+    if (!this.selectFilter) return;
+    this.selectFilter.value = this.selectedOptions;
   }
 
   protected filterOptions(value: string): void {
