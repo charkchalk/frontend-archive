@@ -1,10 +1,15 @@
 import CompareOption from "./compare-option";
 
-export default abstract class Filter {
+export default class Filter {
   public static readonly key: string;
+  public static readonly label: string;
+  public getKey(): string;
+  public getLabel(): string;
 
-  public abstract readonly selectableCompareOptions: CompareOption[];
-  public abstract compareOption: CompareOption | null;
+  public readonly type: string;
 
-  public abstract value: unknown;
+  public readonly selectableCompareOptions: CompareOption[];
+  public compareOption: CompareOption | null;
+
+  public value: unknown;
 }

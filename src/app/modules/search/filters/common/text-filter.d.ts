@@ -1,6 +1,7 @@
 import Filter from "./filter";
 
 export default abstract class TextFilter extends Filter {
+  public readonly type = "text";
   public abstract rules: RegExp[];
 
   public abstract getRule(): RegExp[];
