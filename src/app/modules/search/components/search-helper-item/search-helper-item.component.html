@@ -13,7 +13,7 @@
 
   <mat-form-field class="lg:w-20">
     <mat-label>比對方式</mat-label>
-    <mat-select [(ngModel)]="compareOption">
+    <mat-select [(ngModel)]="compareOption" [disabled]="!filter">
       <mat-option
         *ngFor="let compareOptions of filter?.selectableCompareOptions"
         [value]="compareOptions"
