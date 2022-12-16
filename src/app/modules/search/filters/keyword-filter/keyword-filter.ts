@@ -35,7 +35,7 @@ export default class KeywordFilter implements TextFilter {
   }
 
   public validate(value: string): RegExp | null {
-    const notPassed = this.rules.find(rule => !rule.test(value));
+    const notPassed = this.rules.find(rule => rule.test(value));
     return notPassed ?? null;
   }
 

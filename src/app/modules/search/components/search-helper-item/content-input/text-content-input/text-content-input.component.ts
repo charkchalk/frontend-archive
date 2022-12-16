@@ -30,6 +30,7 @@ export class TextContentInputComponent implements OnInit, OnDestroy {
   }
 
   public add(event: MatChipInputEvent): void {
+    this.error = null;
     const value = (event.value || "").trim();
 
     if (!value) return;
@@ -50,10 +51,17 @@ export class TextContentInputComponent implements OnInit, OnDestroy {
   }
 
   public edit(index: number, event: MatChipEditedEvent): void {
+    this.error = null;
     const value = event.value.trim();
 
     if (!value) {
       this.remove(index);
+      return;
+    }
+
+    const error = this.textFilter?.validate(value);
+    if (error) {
+      this.error = error.source;
       return;
     }
 
