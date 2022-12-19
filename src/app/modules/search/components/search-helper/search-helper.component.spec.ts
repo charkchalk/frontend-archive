@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { By } from "@angular/platform-browser";
+import { MatIconModule } from "@angular/material/icon";
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from "@angular/material/legacy-autocomplete";
 import { MatLegacyChipsModule as MatChipsModule } from "@angular/material/legacy-chips";
-import { MatIconModule } from "@angular/material/icon";
 import { MatLegacySelectModule as MatSelectModule } from "@angular/material/legacy-select";
-import { SearchHelperComponent } from "./search-helper.component";
-import { SearchHelperItemComponent } from "../search-helper-item/search-helper-item.component";
+import { By } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 import { SearchService } from "../../search.service";
+import { SearchHelperItemComponent } from "../search-helper-item/search-helper-item.component";
+import { SearchHelperComponent } from "./search-helper.component";
 
 describe("SearchHelperComponent", () => {
   let component: SearchHelperComponent;
