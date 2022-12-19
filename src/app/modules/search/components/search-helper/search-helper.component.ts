@@ -1,5 +1,6 @@
-import { AnyFilter, SearchService } from "../../search.service";
 import { Component, OnDestroy, OnInit } from "@angular/core";
+
+import { AnyFilter, SearchService } from "../../search.service";
 
 @Component({
   selector: "app-search-helper",
