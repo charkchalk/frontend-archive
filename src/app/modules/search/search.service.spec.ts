@@ -14,6 +14,21 @@ describe("SearchService", () => {
     expect(service).toBeTruthy();
   });
 
+  it("should return an array of available filters", () => {
+    expect(service.getAvailableFilters()).toBeInstanceOf(Array);
+  });
+
+  describe("#getFilter()", () => {
+    it("should be able to get corresponding filter by the key", () => {
+      const filter = service.getAvailableFilters()[0];
+      expect(service.getFilter(filter.key)).toEqual(filter);
+    });
+
+    it("should return undefined if the filter is not found", () => {
+      expect(service.getFilter("not-found")).toBeNull();
+    });
+  });
+
   describe("#searchHelperEnabled", () => {
     it("should be observable and return a default false value", (done: DoneFn) => {
       service.searchHelperEnabled.subscribe(value => {
