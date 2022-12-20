@@ -1,6 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "plugins": ["simple-import-sort", "import"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -31,7 +32,11 @@
         "@typescript-eslint/explicit-function-return-type": "error",
         "@typescript-eslint/explicit-member-accessibility": "error",
         "@typescript-eslint/no-unused-vars": "error",
-        "sort-imports": "error"
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error"
       }
     },
     {

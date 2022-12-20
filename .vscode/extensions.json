@@ -4,7 +4,6 @@
     "angular.ng-template",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss",
-    "amatiasq.sort-imports"
+    "bradlc.vscode-tailwindcss"
   ]
 }

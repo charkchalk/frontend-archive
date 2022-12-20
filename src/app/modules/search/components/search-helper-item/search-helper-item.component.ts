@@ -1,3 +1,8 @@
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent } from "@angular/material/legacy-autocomplete";
+import { BehaviorSubject } from "rxjs";
+
 import {
   AnyFilter,
   AnyFiltrable,
@@ -9,11 +14,6 @@ import {
   Selectable,
   TextFilter,
 } from "../../search.service";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-
-import { BehaviorSubject } from "rxjs";
-import { FormControl } from "@angular/forms";
-import { MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent } from "@angular/material/legacy-autocomplete";
 
 @Component({
   selector: "app-search-helper-item",
