@@ -18,9 +18,6 @@ import { SearchRoutingModule } from "./search-routing.module";
 
 @NgModule({
   declarations: [
-    SearchIndexComponent,
-    SearchComponent,
-    SearchTextComponent,
     SearchHelperComponent,
     SearchHelperItemComponent,
     TextContentInputComponent,
