@@ -19,7 +19,6 @@ export default class TeacherFilter implements SelectFilter {
   private teacherProvider: TeacherProviderService;
   public constructor() {
     this.teacherProvider = new TeacherProviderService();
-    console.log("TeacherFilter constructor", this);
   }
 
   public readonly type = "select";
