@@ -1,23 +1,23 @@
+import { HarnessLoader } from "@angular/cdk/testing";
+import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import {
-  MatChipEditInput,
   MatChipEditedEvent,
+  MatChipEditInput,
   MatChipsModule,
 } from "@angular/material/chips";
 import {
   MatChipGridHarness,
   MatChipInputHarness,
 } from "@angular/material/chips/testing";
-
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { By } from "@angular/platform-browser";
-import CompareOption from "../../../../filters/common/compare-option";
-import { HarnessLoader } from "@angular/cdk/testing";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
-import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
-import { TextContentInputComponent } from "./text-content-input.component";
+import { By } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import CompareOption from "../../../../filters/common/compare-option";
 import TextFilter from "../../../../filters/common/text-filter";
+import { TextContentInputComponent } from "./text-content-input.component";
 
 describe("TextContentInputComponent", () => {
   let component: TextContentInputComponent;

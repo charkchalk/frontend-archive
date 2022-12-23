@@ -1,4 +1,4 @@
-import { TeacherFilter } from "./teacher-filter";
+import TeacherFilter from "./teacher-filter";
 
 describe("TeacherFilter", () => {
   it("should create an instance", () => {

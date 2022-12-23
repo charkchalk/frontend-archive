@@ -1,5 +1,6 @@
-import TeacherProviderService from "./teacher.provider.service";
 import { TestBed } from "@angular/core/testing";
+
+import TeacherProviderService from "./teacher.provider.service";
 
 describe("TeacherProviderService", () => {
   let service: TeacherProviderService;

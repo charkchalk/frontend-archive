@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 
 import Displayable from "../../../../filters/common/displayable";
 import Filter from "../../../../filters/common/filter";
-import { FormControl } from "@angular/forms";
-import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import SelectFilter from "../../../../filters/common/select-filter";
 
 @Component({

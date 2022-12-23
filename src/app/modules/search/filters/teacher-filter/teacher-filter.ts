@@ -1,8 +1,9 @@
+import { Injectable } from "@angular/core";
+
+import TeacherProviderService from "../../../../providers/teacher/teacher.provider.service";
 import CompareOption from "../common/compare-option";
 import Displayable from "../common/displayable";
-import { Injectable } from "@angular/core";
 import SelectFilter from "../common/select-filter";
-import TeacherProviderService from "../../../../providers/teacher/teacher.provider.service";
 
 @Injectable()
 export default class TeacherFilter implements SelectFilter {

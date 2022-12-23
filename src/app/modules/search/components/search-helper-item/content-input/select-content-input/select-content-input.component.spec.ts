@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { By } from "@angular/platform-browser";
-import CompareOption from "../../../../filters/common/compare-option";
-import Displayable from "../../../../filters/common/displayable";
+import { ReactiveFormsModule } from "@angular/forms";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
-import { ReactiveFormsModule } from "@angular/forms";
-import { SelectContentInputComponent } from "./select-content-input.component";
+import { By } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import CompareOption from "../../../../filters/common/compare-option";
+import Displayable from "../../../../filters/common/displayable";
 import SelectFilter from "../../../../filters/common/select-filter";
+import { SelectContentInputComponent } from "./select-content-input.component";
 
 describe("SelectContentInputComponent", () => {
   let component: SelectContentInputComponent;
