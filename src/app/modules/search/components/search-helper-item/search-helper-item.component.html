@@ -1,12 +1,12 @@
 <div class="flex flex-col lg:flex-row lg:space-x-2">
   <mat-form-field>
     <mat-label>過濾項</mat-label>
-    <mat-select (valueChange)="changed.emit($event)" [value]="filter?.getKey()">
-      <mat-option
-        *ngFor="let availableFilter of availableFilters"
-        [value]="availableFilter.key"
-      >
-        {{ availableFilter.label }}
+    <mat-select
+      (valueChange)="changed.emit($event)"
+      [value]="filter?.getFactory()"
+    >
+      <mat-option *ngFor="let factory of filterFactories" [value]="factory">
+        {{ factory.label }}
       </mat-option>
     </mat-select>
   </mat-form-field>

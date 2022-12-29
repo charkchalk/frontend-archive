@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 
 import Filter from "../../filters/common/filter";
+import FilterFactory from "../../filters/common/filter-factory";
 import { SearchService } from "../../search.service";
 
 @Component({
@@ -17,11 +18,10 @@ export class SearchHelperComponent implements OnInit, OnDestroy {
     if (!this.filters.length) this.addFilter();
   }
 
-  public replaceFilter(index: number, filterKey: string): void {
-    const filter = this.searchService.getFilter(filterKey);
-    if (!filter) return;
+  public replaceFilter(index: number, factory: FilterFactory): void {
+    const filter = factory.createFilter();
 
-    this.filters.splice(index, 1, new filter());
+    this.filters.splice(index, 1, filter);
   }
 
   protected addFilter(): void {

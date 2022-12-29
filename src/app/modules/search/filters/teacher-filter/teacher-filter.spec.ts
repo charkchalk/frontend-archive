@@ -1,7 +1,7 @@
-import TeacherFilter from "./teacher-filter";
+// import TeacherFilter from "./teacher-filter";
 
 describe("TeacherFilter", () => {
-  it("should create an instance", () => {
-    expect(new TeacherFilter()).toBeTruthy();
-  });
+  // it("should create an instance", () => {
+  //   expect(new TeacherFilter()).toBeTruthy();
+  // });
 });

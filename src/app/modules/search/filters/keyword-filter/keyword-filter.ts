@@ -1,17 +1,15 @@
 import CompareOption from "../common/compare-option";
 import TextFilter from "../common/text-filter";
+import KeywordFilterFactory from "./keyword-filter-factory";
 
 export default class KeywordFilter implements TextFilter {
-  public static readonly key = "keyword";
-  public static readonly label = "關鍵字";
-  public getKey(): string {
-    return KeywordFilter.key;
-  }
-  public getLabel(): string {
-    return KeywordFilter.label;
-  }
+  public constructor(private factory: KeywordFilterFactory) {}
 
   public readonly type = "text";
+
+  public getFactory(): KeywordFilterFactory {
+    return this.factory;
+  }
 
   public readonly selectableCompareOptions: CompareOption[] = [
     {

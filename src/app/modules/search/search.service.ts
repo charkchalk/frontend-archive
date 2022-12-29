@@ -2,21 +2,26 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 
 import Filter from "./filters/common/filter";
-import KeywordFilter from "./filters/keyword-filter/keyword-filter";
-import TeacherFilter from "./filters/teacher-filter/teacher-filter";
+import FilterFactory from "./filters/common/filter-factory";
+import KeywordFilterFactory from "./filters/keyword-filter/keyword-filter-factory";
+import TeacherFilterFactory from "./filters/teacher-filter/teacher-filter-factory";
 
 @Injectable({
   providedIn: "root",
 })
 export class SearchService {
-  private availableFilters: typeof Filter[] = [TeacherFilter, KeywordFilter];
+  private factories: FilterFactory[] = [];
 
-  public getAvailableFilters(): typeof Filter[] {
-    return this.availableFilters;
+  public constructor(
+    private teacherFilterFactory: TeacherFilterFactory,
+    private keywordFilterFactory: KeywordFilterFactory,
+  ) {
+    this.factories.push(teacherFilterFactory);
+    this.factories.push(keywordFilterFactory);
   }
 
-  public getFilter(key: string): typeof Filter | null {
-    return this.availableFilters.find(filter => filter.key === key) || null;
+  public getFilterFactories(): FilterFactory[] {
+    return this.factories;
   }
 
   public filters: Filter[] = [];

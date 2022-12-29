@@ -4,24 +4,20 @@ import TeacherProviderService from "../../../../providers/teacher/teacher.provid
 import CompareOption from "../common/compare-option";
 import Displayable from "../common/displayable";
 import SelectFilter from "../common/select-filter";
+import TeacherFilterFactory from "./teacher-filter-factory";
 
 @Injectable()
 export default class TeacherFilter implements SelectFilter {
-  public static readonly key = "teacher";
-  public static readonly label = "授課教師";
-  public getKey(): string {
-    return TeacherFilter.key;
-  }
-  public getLabel(): string {
-    return TeacherFilter.label;
-  }
-
-  private teacherProvider: TeacherProviderService;
-  public constructor() {
-    this.teacherProvider = new TeacherProviderService();
-  }
+  public constructor(
+    private teacherProvider: TeacherProviderService,
+    private factory: TeacherFilterFactory,
+  ) {}
 
   public readonly type = "select";
+
+  public getFactory(): TeacherFilterFactory {
+    return this.factory;
+  }
 
   public readonly selectableCompareOptions: CompareOption[] = [
     {
