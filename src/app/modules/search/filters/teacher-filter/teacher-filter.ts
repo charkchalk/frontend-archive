@@ -6,7 +6,9 @@ import Displayable from "../common/displayable";
 import SelectFilter from "../common/select-filter";
 import TeacherFilterFactory from "./teacher-filter-factory";
 
-@Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export default class TeacherFilter implements SelectFilter {
   public constructor(
     private teacherProvider: TeacherProviderService,

@@ -1,5 +1,6 @@
 import { TestBed } from "@angular/core/testing";
 
+import Teacher from "./teacher";
 import TeacherProviderService from "./teacher.provider.service";
 
 describe("TeacherProviderService", () => {
@@ -29,3 +30,50 @@ describe("TeacherProviderService", () => {
     });
   });
 });
+
+export class TestTeacherProviderService {
+  public _sample = [
+    {
+      id: 8,
+      name: "湊あくあ",
+      description: "Minato Aqua",
+      link: "https://hololive.hololivepro.com/talents/minato-aqua/",
+    },
+    {
+      id: 15,
+      name: "さくらみこ",
+      description: "Sakura Miko",
+      link: "https://hololive.hololivepro.com/talents/sakuramiko/",
+    },
+    {
+      id: 18,
+      name: "星街すいせい",
+      description: "Hoshimachi Suisei",
+      link: "https://hololive.hololivepro.com/talents/hoshimachi-suisei/",
+    },
+    {
+      id: 19,
+      name: "兎田ぺこら",
+      description: "Usada Pekora",
+      link: "https://hololive.hololivepro.com/talents/usada-pekora/",
+    },
+    {
+      id: 28,
+      name: "桃鈴ねね",
+      description: "Momosuzu Nene",
+      link: "https://hololive.hololivepro.com/talents/momosuzu-nene/",
+    },
+  ];
+
+  public getSuggestions(value: string): Teacher[] {
+    const inputValue = value.trim().toLowerCase();
+
+    if (inputValue === "") {
+      return this._sample;
+    }
+
+    return this._sample.filter(teacher => {
+      return teacher.name.toLowerCase().includes(inputValue);
+    });
+  }
+}
