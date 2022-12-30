@@ -1,7 +1,12 @@
+import { Injectable } from "@angular/core";
+
 import CompareOption from "../common/compare-option";
 import TextFilter from "../common/text-filter";
 import KeywordFilterFactory from "./keyword-filter-factory";
 
+@Injectable({
+  providedIn: "root",
+})
 export default class KeywordFilter implements TextFilter {
   public constructor(private factory: KeywordFilterFactory) {}
 
