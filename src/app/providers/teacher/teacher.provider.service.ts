@@ -6,7 +6,7 @@ import Teacher from "./teacher";
   providedIn: "root",
 })
 export default class TeacherProviderService {
-  private _sample = [
+  public _sample = [
     {
       id: 1,
       name: "ときのそら",
