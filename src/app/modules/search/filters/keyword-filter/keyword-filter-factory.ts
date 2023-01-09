@@ -13,4 +13,8 @@ export default class KeywordFilterFactory implements FilterFactory {
   public createFilter(): KeywordFilter {
     return new KeywordFilter(this);
   }
+
+  public fromString(raw: string): KeywordFilter {
+    return new KeywordFilter(this, raw);
+  }
 }

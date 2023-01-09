@@ -1,0 +1,5 @@
+<app-search-text class="block"></app-search-text>
+<app-search-helper
+  *ngIf="this.searchService.searchHelperEnabled | async"
+  class="block"
+></app-search-helper>

@@ -5,4 +5,5 @@ export default interface FilterFactory {
   label: string;
 
   createFilter(): Filter;
+  fromString(value: string): Filter;
 }
